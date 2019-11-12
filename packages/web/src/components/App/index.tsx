@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 // @ts-ignore
 import Clarifai from 'clarifai';
 // @ts-ignore
-import axios from 'axios';
 import './index.css';
 
 const app = new Clarifai.App({

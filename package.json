@@ -2,41 +2,23 @@
   "name": "food-examiner",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/api",
+    "packages/web"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "concurrently \"yarn api:start\" \"yarn web:start\"",
+    "api:start": "yarn workspace @food-examiner/api develop",
+    "api:build": "yarn workspace @food-examiner/api build",
+    "web:start": "yarn workspace @food-examiner/web start",
+    "web:build": "yarn workspace @food-examiner/web build",
     "code:clean": "yarn code:lint && yarn code:format",
     "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\" --fix",
     "code:format": "prettier './src/**/**.{js,jsx,ts,tsx}' --write",
-    "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
+    "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "clean:modules": "rm -rf ./node_modules && packages/**/node_modules"
   },
   "dependencies": {
-    "@types/jest": "24.0.22",
-    "@types/node": "12.12.6",
-    "@types/react": "16.9.11",
-    "@types/react-dom": "16.9.4",
-    "axios": "^0.19.0",
-    "clarifai": "^2.9.1",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0",
-    "typescript": "3.7.2"
-  },
-  "devDependencies": {
-    "poetic": "^1.1.0"
-  },
-  "browserslist": {
-    "production": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "concurrently": "^5.0.0"
   }
 }
