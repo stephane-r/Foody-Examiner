@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['./node_modules/poetic/config/eslint/eslint-config.js'],
+  extends: ['../../node_modules/poetic/config/eslint/eslint-config.js'],
   globals: {
     __DEV__: true
   },

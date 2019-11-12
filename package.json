@@ -19,6 +19,7 @@
     "clean:modules": "rm -rf ./node_modules && packages/**/node_modules"
   },
   "dependencies": {
+    "clarifai": "^2.9.1",
     "concurrently": "^5.0.0"
   }
 }
