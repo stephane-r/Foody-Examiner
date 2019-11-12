@@ -1,44 +1,53 @@
-import React, { useState, useEffect } from 'react';
-// @ts-ignore
-import './index.css';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
+import { useAsync, useAsyncCallback } from 'react-async-hook';
 
-const image =
-  'http://recettescookeo.com/wp-content/uploads/2015/03/recettes-plats-cookeo.jpg';
+const getClarifai = async (): Promise<any> =>
+  (await fetch(`${process.env.REACT_APP_API_URL}/clarifai`)).json();
+
+const getRecipes = async (): Promise<any> =>
+  (await fetch(`${process.env.REACT_APP_API_URL}/recipes`)).json();
 
 const App: React.FC = () => {
+  const { loading, result } = useAsync(getClarifai, [1]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={image} alt="test" />
-        <ul>
-          {/* {concepts.map((item: any) => (
-            <li>{item.name}</li>
-          ))} */}
-        </ul>
-        <Recipe />
+        {loading ? (
+          <div>Chargement</div>
+        ) : (
+          <ul>
+            {result.map((item: any) => (
+              <li>{item.name}</li>
+            ))}
+          </ul>
+        )}
+        <Recipes />
       </header>
     </div>
   );
 };
 
-const Recipe: React.FC = () => {
-  const test = async () => {
-    try {
-      const request = await fetch(
-        'https://api.spoonacular.com/recipes/search',
-        { method: 'GET' }
-      );
-      const response = await request.json();
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+const Recipes: React.FC = () => {
+  const getRecipesList = useAsyncCallback(getRecipes);
 
   return (
-    <button type="button" onClick={test}>
-      Get recipe
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={getRecipesList.execute}
+        disabled={getRecipesList.loading}>
+        Get recipes
+      </button>
+      {getRecipesList.result && (
+        <ul>
+          {getRecipesList.result.map((item: any) => (
+            <li>{item.title}</li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 
