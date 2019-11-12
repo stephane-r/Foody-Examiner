@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  foody-examiner:
+    build: ./config/docker
+    container_name: foody_examiner
+    environment:
+      - LOCAL_USER_ID=$USER_ID
+      - LOCAL_GROUP_ID=$GROUP_ID
+      - NODE_ENV=production
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
