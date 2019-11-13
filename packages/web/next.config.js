@@ -5,7 +5,8 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   exportPathMap: () => ({
-    '/': { page: '/Home/index' }
+    '/': { page: '/Home/index' },
+    '/connexion': { page: '/Login/index' }
   }),
   webpack: config => {
     config.plugins = config.plugins || [];

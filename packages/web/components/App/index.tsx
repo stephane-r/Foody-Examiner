@@ -9,7 +9,7 @@ import { ApolloProvider } from 'react-apollo';
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const createApolloClient = (cache = {}) =>
   new ApolloClient({
-    ssrMode: false,
+    ssrMode: typeof window !== 'undefined',
     cache: new InMemoryCache().restore(cache),
     link: createUploadLink({ uri: process.env.API_GRAPHQL_URL })
   });

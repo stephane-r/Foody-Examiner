@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Head from 'next/head';
 import App from '../../components/App';
 
@@ -8,7 +9,10 @@ const Home: React.FC = () => (
       <title>Home</title>
     </Head>
     <App>
-      <h1>Hello world !</h1>
+      <h1>Home</h1>
+      <Link href="/connexion">
+        <a>Login</a>
+      </Link>
     </App>
   </>
 );
