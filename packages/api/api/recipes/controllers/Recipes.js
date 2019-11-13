@@ -1,6 +1,6 @@
 require('dotenv').config({ path: '../../.env' });
 
-const fetch = require('node-fetch');
+const fetch = require('cross-fetch');
 
 module.exports = {
   recipes: async ctx => {
