@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
+    "@d2k/react-localstorage": "^1.1.2",
     "@types/apollo-upload-client": "^8.1.3",
     "@types/jest": "24.0.22",
     "@types/node": "12.12.6",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
+    "@types/yup": "^0.26.24",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link": "^1.2.13",
@@ -25,7 +27,9 @@
     "react-apollo": "^3.1.3",
     "react-async-hook": "^3.6.1",
     "react-dom": "^16.11.0",
-    "typescript": "3.7.2"
+    "react-hook-form": "^3.28.1",
+    "typescript": "3.7.2",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "poetic": "^1.1.0"

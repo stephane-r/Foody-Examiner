@@ -8,8 +8,10 @@
   ],
   "scripts": {
     "start": "concurrently \"yarn api:start\" \"yarn web:dev\"",
-    "api:start": "yarn workspace @food-examiner/api develop",
+    "api:dev": "yarn workspace @food-examiner/api develop",
+    "api:start": "yarn workspace @food-examiner/api start",
     "api:build": "yarn workspace @food-examiner/api build",
+    "web:api": "concurrently \"yarn web:dev\" \"yarn api:dev\"",
     "web:dev": "yarn workspace @food-examiner/web dev",
     "web:start": "yarn workspace @food-examiner/web start",
     "web:build": "yarn workspace @food-examiner/web build",
