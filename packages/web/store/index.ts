@@ -33,9 +33,13 @@ const initializeStore = (): Store => {
   );
 
   if (isClient) {
-    const { app } = store.getState();
-
-    store.subscribe(() => saveState({ app }));
+    store.subscribe(() =>
+      saveState({
+        app: {
+          ...store.getState().app
+        }
+      })
+    );
     store.dispatch(appLoading());
     store.dispatch(appInit());
   }

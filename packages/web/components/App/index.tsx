@@ -4,6 +4,7 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createUploadLink } from 'apollo-upload-client';
 import { ApolloProvider } from 'react-apollo';
+import ProfilContainer from '../../containers/Profil';
 // import { useAsync, useAsyncCallback } from 'react-async-hook';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -17,7 +18,10 @@ const createApolloClient = (cache = {}) =>
 const apolloClient = createApolloClient();
 
 const App: React.FC = ({ children }) => (
-  <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
+  <ApolloProvider client={apolloClient}>
+    <ProfilContainer />
+    {children}
+  </ApolloProvider>
 );
 
 // const getClarifai = async (): Promise<any> =>

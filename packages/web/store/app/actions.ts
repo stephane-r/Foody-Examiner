@@ -11,3 +11,16 @@ export const appLoading = (): types.Action => ({
 export const appLoaded = (): types.Action => ({
   type: types.APP_LOADED
 });
+
+export const receiveUser = (
+  token: string,
+  user: types.User
+): types.ReceiveUserAction => ({
+  type: types.RECEIVE_USER,
+  token,
+  user
+});
+
+export const logout = (): types.Action => ({
+  type: types.LOGOUT
+});

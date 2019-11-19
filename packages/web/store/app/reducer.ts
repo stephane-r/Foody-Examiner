@@ -1,7 +1,9 @@
 import * as types from './types';
 
 const initialState: types.AppState = {
-  isLoading: true
+  isLoading: true,
+  token: null,
+  user: null
 };
 
 const appReducer = (
@@ -20,6 +22,18 @@ const appReducer = (
       return {
         ...state,
         isLoading: false
+      };
+    case types.RECEIVE_USER:
+      return {
+        ...state,
+        token: action.token,
+        user: action.user
+      };
+    case types.LOGOUT:
+      return {
+        ...state,
+        token: initialState.token,
+        user: initialState.user
       };
     default:
       return state;

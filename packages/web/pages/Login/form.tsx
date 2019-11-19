@@ -5,13 +5,13 @@ import useForm from 'react-hook-form';
 import LOGIN from '../../graphql/mutations/login';
 import loginSchema, { LoginSchemaTypes } from './form.schema';
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC = props => {
   const { register, handleSubmit, errors } = useForm({
     validationSchema: loginSchema
   });
 
   const onError = (error): Function => console.log(error);
-  const onCompleted = (data): Function => console.log(data);
+  const onCompleted = (data): Function => props.receiveUser(data.login);
 
   const [login] = useMutation(LOGIN, {
     onError,
