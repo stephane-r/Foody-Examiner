@@ -29,7 +29,7 @@ const LoginForm: React.FC = () => {
       {errors.password && <div>This field is required</div>}
       <button type="submit">login</button>
       <hr />
-      <Link href="/register">
+      <Link href="/inscription">
         <a>Register</a>
       </Link>
     </form>

@@ -9,6 +9,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': [0],
     'react/no-unescaped-entities': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'no-underscore-dangle': 'off',
     indent: [
       2,
       2,
