@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Pantries from '../../components/Pantry/List';
 import { Store } from '../../store/types';
-import { User } from '../../store/app/types';
+import { User } from '../../interfaces';
 
 interface MapStateToProps {
   user: User | null;

@@ -1,4 +1,5 @@
 import * as types from './types';
+import { User } from '../../interfaces';
 
 export const appInit = (): types.Action => ({
   type: types.APP_INIT
@@ -14,7 +15,7 @@ export const appLoaded = (): types.Action => ({
 
 export const receiveUser = (
   token: string,
-  user: types.User
+  user: User
 ): types.ReceiveUserAction => ({
   type: types.RECEIVE_USER,
   token,

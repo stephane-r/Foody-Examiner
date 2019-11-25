@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../../store/app/types';
+import { User } from '../../interfaces';
 
 interface ProfilProps {
   user: User | null;

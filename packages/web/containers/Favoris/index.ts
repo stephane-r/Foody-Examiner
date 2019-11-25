@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Favoris from '../../components/Favoris/List';
 import { Store } from '../../store/types';
-import { User } from '../../store/app/types';
+import { User } from '../../interfaces';
 
 interface MapStateToProps {
   user: User | null;

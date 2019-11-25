@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Profil from '../../components/Profil';
 import { Store } from '../../store/types';
 import { logout } from '../../store/app/actions';
-import { User } from '../../store/app/types';
+import { User } from '../../interfaces';
 
 interface MapStateToProps {
   user: User | null;
