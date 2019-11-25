@@ -22,6 +22,13 @@ export const receiveUser = (
   user
 });
 
+export const updateUserFavoris = (
+  favoris: Array<string>
+): types.UpdateUserFavoris => ({
+  type: types.USER_UPDATE_FAVORIS,
+  favoris
+});
+
 export const logout = (): types.Action => ({
   type: types.LOGOUT
 });

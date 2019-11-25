@@ -1,32 +1,17 @@
 import React from 'react';
-import { useMutation } from 'react-apollo';
-import UPDATE_USER_FAVORIS from '../../../graphql/mutations/updateUserFavoris';
 
 interface FavorisProps {
   item: string;
+  removeFromFavoris: (item: string) => any;
 }
 
-const Favoris = ({ item }: FavorisProps): JSX.Element => {
-  const onError = (error: any): any => console.log(error);
-  const onCompleted = (data: any): any => console.log(data);
-
-  const [updateUserFavoris] = useMutation(UPDATE_USER_FAVORIS, {
-    onError,
-    onCompleted
-  });
-
-  return (
-    <div>
-      {item}
-      <button
-        type="button"
-        onClick={(): any =>
-          updateUserFavoris({ variables: { userId: 1, favoris: ['test'] } })
-        }>
-        Add to favoris
-      </button>
-    </div>
-  );
-};
+const Favoris = ({ item, removeFromFavoris }: FavorisProps): JSX.Element => (
+  <div>
+    {item}
+    <button type="button" onClick={(): any => removeFromFavoris(item)}>
+      Remove
+    </button>
+  </div>
+);
 
 export default Favoris;

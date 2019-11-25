@@ -35,6 +35,14 @@ const appReducer = (
         token: initialState.token,
         user: initialState.user
       };
+    case types.USER_UPDATE_FAVORIS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favoris: action.favoris
+        }
+      };
     default:
       return state;
   }
