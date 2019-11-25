@@ -7,7 +7,10 @@ export interface Action {
   type: string;
 }
 export interface User {
+  id: number;
   username: string;
+  pantries: Array<string>;
+  favoris: Array<string>;
 }
 export interface ReceiveUserAction extends Action {
   token: string;

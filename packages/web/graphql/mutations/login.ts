@@ -5,7 +5,10 @@ const LOGIN = gql`
     login(input: { identifier: $identifier, password: $password }) {
       jwt
       user {
+        id
         username
+        pantries
+        favoris
       }
     }
   }

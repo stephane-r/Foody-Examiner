@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config('../../.env');
 
 const path = require('path');
@@ -7,7 +8,9 @@ module.exports = {
   exportPathMap: () => ({
     '/': { page: '/Home/index' },
     '/connexion': { page: '/Login/index' },
-    '/inscription': { page: '/Register/index' }
+    '/inscription': { page: '/Register/index' },
+    '/mon-garde-manger': { page: '/Pantries/index' },
+    '/mes-favoris': { page: '/Favoris/index' }
   }),
   webpack: config => {
     config.plugins = config.plugins || [];
