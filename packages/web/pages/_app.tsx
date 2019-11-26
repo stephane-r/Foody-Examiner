@@ -1,8 +1,9 @@
 import React from 'react';
-import App, { Container } from 'next/app';
+import NextApp from 'next/app';
 import { Provider } from 'react-redux';
 import widthRedux from '../lib/withRedux';
 import { Store } from '../store/types';
+import App from '../components/App';
 
 interface MyAppProps {
   Component: JSX.Element;
@@ -11,16 +12,16 @@ interface MyAppProps {
   reduxStore: Store;
 }
 
-class MyApp extends App<MyAppProps> {
+class MyApp extends NextApp<MyAppProps> {
   render(): JSX.Element {
     const { Component, pageProps, reduxStore } = this.props;
 
     return (
-      <Container>
-        <Provider store={reduxStore}>
+      <Provider store={reduxStore}>
+        <App>
           <Component {...pageProps} reduxStore={reduxStore} />
-        </Provider>
-      </Container>
+        </App>
+      </Provider>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import App from '../../components/App';
+import Layout from '../../components/Layout';
 import Upload from '../../components/Forms/Upload';
 
 const Home: React.FC = () => (
@@ -8,10 +8,10 @@ const Home: React.FC = () => (
     <Head>
       <title>Home</title>
     </Head>
-    <App>
+    <Layout>
       <h1>Home</h1>
       <Upload />
-    </App>
+    </Layout>
   </>
 );
 

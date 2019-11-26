@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
-import App from '../../components/App';
+import Layout from '../../components/Layout';
 import RegiterForm from './form';
 
 const RegisterScreen: React.FC = () => (
@@ -8,10 +8,10 @@ const RegisterScreen: React.FC = () => (
     <Head>
       <title>Register</title>
     </Head>
-    <App>
+    <Layout>
       <h1>Register</h1>
       <RegiterForm />
-    </App>
+    </Layout>
   </>
 );
 

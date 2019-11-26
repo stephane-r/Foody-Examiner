@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import App from '../../components/App';
+import Layout from '../../components/Layout';
 import LoginFormContainer from '../../containers/LoginForm';
 
 const LoginScreen: React.FC = () => {
@@ -11,7 +11,7 @@ const LoginScreen: React.FC = () => {
       <Head>
         <title>Connexion</title>
       </Head>
-      <App>
+      <Layout>
         <h1>Connexion</h1>
         <button type="button" onClick={(): Function => setUseAcount(true)}>
           Use account
@@ -20,7 +20,7 @@ const LoginScreen: React.FC = () => {
           Continue without acount
         </button>
         {useAcount && <LoginFormContainer />}
-      </App>
+      </Layout>
     </>
   );
 };

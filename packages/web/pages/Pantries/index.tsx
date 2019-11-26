@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import App from '../../components/App';
+import Layout from '../../components/Layout';
 import PantriesContainer from '../../containers/Pantries';
 
 const Home: React.FC = () => (
@@ -8,10 +8,10 @@ const Home: React.FC = () => (
     <Head>
       <title>Home</title>
     </Head>
-    <App>
+    <Layout>
       <h1>My pantries</h1>
       <PantriesContainer />
-    </App>
+    </Layout>
   </>
 );
 

@@ -3,6 +3,9 @@ import Link from 'next/link';
 
 const Navigation: React.FC = () => (
   <nav>
+    <Link href="/">
+      <a>Home</a>
+    </Link>
     <Link href="/mon-garde-manger">
       <a>My pantry</a>
     </Link>
