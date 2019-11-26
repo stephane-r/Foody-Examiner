@@ -7,7 +7,7 @@
     "packages/web"
   ],
   "scripts": {
-    "start": "concurrently \"yarn api:start\" \"yarn web:dev\"",
+    "start": "NODE_ENV=production concurrently \"yarn api:start\" \"yarn web:start\"",
     "api:dev": "yarn workspace @food-examiner/api develop",
     "api:start": "yarn workspace @food-examiner/api start",
     "api:build": "yarn workspace @food-examiner/api build",

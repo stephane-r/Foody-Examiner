@@ -4,6 +4,7 @@ module.exports = {
     __DEV__: true
   },
   rules: {
+    '@typescript-eslint/no-var-requires': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react/jsx-first-prop-new-line': [1, 'multiline'],
     'react/react-in-jsx-scope': 'off',
