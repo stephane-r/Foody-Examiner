@@ -13,6 +13,10 @@ export const appLoaded = (): types.Action => ({
   type: types.APP_LOADED
 });
 
+export const loginSuccess = (): types.Action => ({
+  type: types.LOGIN_SUCCESS
+});
+
 export const receiveUser = (
   token: string,
   user: User

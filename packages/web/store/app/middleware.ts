@@ -35,7 +35,7 @@ const appMiddleware = (store: Record<string, any>) => (
       break;
     case types.APP_LOADED:
       break;
-    case types.RECEIVE_USER:
+    case types.LOGIN_SUCCESS:
       Router.push(routes.home);
       break;
     default:
