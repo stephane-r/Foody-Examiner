@@ -21,6 +21,7 @@ const Favoris = ({ favoris, test }: FavorisProps): JSX.Element => {
     const favorisUpdated = favoris.filter(test => test !== item);
     updateUserFavoris({ variables: { userId: 1, favoris: favorisUpdated } });
   };
+
   return (
     <div>
       {favoris.map(item => (

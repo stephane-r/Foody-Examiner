@@ -15,6 +15,9 @@ export interface ReceiveUserAction extends Action {
 export interface UpdateUserFavoris extends Action {
   favoris: Array<string>;
 }
+export interface UpdateUserPantries extends Action {
+  pantries: Array<string>;
+}
 
 export const APP_INIT = 'APP_INIT';
 export const APP_LOADING = 'APP_LOADING';
@@ -27,3 +30,4 @@ export const RECEIVE_USER = 'RECEIVE_USER';
 export const LOGOUT = 'LOGOUT';
 
 export const USER_UPDATE_FAVORIS = 'USER_UPDATE_FAVORIS';
+export const USER_UPDATE_PANTRIES = 'USER_UPDATE_PANTRIES';

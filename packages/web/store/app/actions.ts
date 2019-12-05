@@ -33,6 +33,13 @@ export const updateUserFavoris = (
   favoris
 });
 
+export const updateUserPantries = (
+  pantries: Array<string>
+): types.UpdateUserPantries => ({
+  type: types.USER_UPDATE_PANTRIES,
+  pantries
+});
+
 export const logout = (): types.Action => ({
   type: types.LOGOUT
 });

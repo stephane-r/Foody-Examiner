@@ -43,6 +43,14 @@ const appReducer = (
           favoris: action.favoris
         }
       };
+    case types.USER_UPDATE_PANTRIES:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          pantries: action.pantries
+        }
+      };
     default:
       return state;
   }
