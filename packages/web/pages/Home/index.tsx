@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+import RecognitionUploadContainer from '../../containers/RecognitionUpload';
 import Layout from '../../components/Layout';
-import Upload from '../../components/Forms/Upload';
 
 const Home: React.FC = () => (
   <>
@@ -10,7 +10,7 @@ const Home: React.FC = () => (
     </Head>
     <Layout>
       <h1>Home</h1>
-      <Upload />
+      <RecognitionUploadContainer />
     </Layout>
   </>
 );

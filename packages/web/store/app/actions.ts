@@ -33,10 +33,24 @@ export const updateUserFavoris = (
   favoris
 });
 
+export const setUserFavoris = (
+  favoris: Array<string>
+): types.SetUserFavoris => ({
+  type: types.USER_SET_FAVORIS,
+  favoris
+});
+
 export const updateUserPantries = (
   pantries: Array<string>
 ): types.UpdateUserPantries => ({
   type: types.USER_UPDATE_PANTRIES,
+  pantries
+});
+
+export const setUserPantries = (
+  pantries: Array<string>
+): types.SetUserPantries => ({
+  type: types.USER_SET_PANTRIES,
   pantries
 });
 
