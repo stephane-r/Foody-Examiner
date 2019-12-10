@@ -2,19 +2,25 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import UPLOAD from '../../../graphql/mutations/upload';
 import Ingredients from '../../Recognition/Ingredients';
+import {
+  FavorisTypes,
+  PantriesTypes,
+  ReceiveUserPantries,
+  ReceiveUserFavoris
+} from '../../../interfaces';
 
 // https://www.derbycityweekend.com/wp-content/uploads/2018/02/Charim-Korean-food.jpg
 // https://assets.lightspeedhq.com/img/2019/07/8aac85b2-blog_foodpresentationtipsfromtopchefs.jpg
 // https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg
 
-interface Upload {
-  pantries: any;
-  receiveUserPantries: any;
-  favoris: any;
-  receiveUserFavoris: any;
+interface UploadProps {
+  pantries: PantriesTypes;
+  receiveUserPantries: ReceiveUserPantries;
+  favoris: FavorisTypes;
+  receiveUserFavoris: ReceiveUserFavoris;
 }
 
-const Upload = (props: Upload): JSX.Element => {
+const Upload: React.FC<UploadProps> = props => {
   const [useField, setUseField] = useState(false);
   const [imageUrl, setImageUrl] = useState(
     'https://assets.lightspeedhq.com/img/2019/07/8aac85b2-blog_foodpresentationtipsfromtopchefs.jpg'
@@ -57,11 +63,10 @@ const Upload = (props: Upload): JSX.Element => {
           />
         </label>
       </div>
-      {useField ? (
-        <input type="file" onChange={handleChange} />
-      ) : (
-        <input type="text" onChange={handleChangeUrl} />
-      )}
+      <input
+        type={useField ? 'file' : 'text'}
+        onChange={useField ? handleChange : handleChangeUrl}
+      />
       {search && <Ingredients url={imageUrl} {...props} />}
     </form>
   );

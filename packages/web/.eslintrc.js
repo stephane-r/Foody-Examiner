@@ -3,6 +3,7 @@ module.exports = {
   globals: {
     __DEV__: true
   },
+  parser: 'babel-eslint',
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
     'import/no-extraneous-dependencies': 'off',

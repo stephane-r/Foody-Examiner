@@ -1,11 +1,12 @@
 import React from 'react';
+import { RemoveFavoris } from '../../../interfaces';
 
 interface FavorisProps {
   item: string;
-  removeFromFavoris: (item: string) => any;
+  removeFromFavoris: RemoveFavoris;
 }
 
-const Favoris = ({ item, removeFromFavoris }: FavorisProps): JSX.Element => (
+const Favoris: React.FC<FavorisProps> = ({ item, removeFromFavoris }) => (
   <div>
     {item}
     <button type="button" onClick={(): any => removeFromFavoris(item)}>

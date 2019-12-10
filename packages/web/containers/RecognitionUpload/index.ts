@@ -1,28 +1,35 @@
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import Upload from '../../components/Forms/Upload';
 import { Store } from '../../store/types';
-import { User } from '../../interfaces';
+import {
+  User,
+  ReceiveUserPantries,
+  ReceiveUserFavoris
+} from '../../interfaces';
 import { setUserPantries, setUserFavoris } from '../../store/app/actions';
 
-interface MapStateToProps {
-  user: User | null;
-}
-
-const mapStateToProps = (state: Store): MapStateToProps => {
+const mapStateToProps = (state: Store): User => {
   const { user } = state.app;
 
   return {
-    pantries: user ? user.pantries : [],
-    favoris: user ? user.favoris : []
+    pantries: user?.pantries ?? [],
+    favoris: user?.favoris ?? []
   };
 };
 
-const mapDispatchToProps = (dispatch): any => ({
-  receiveUserPantries: (pantries): any => dispatch(setUserPantries(pantries)),
-  receiveUserFavoris: (favoris): any => dispatch(setUserFavoris(favoris))
+interface DispatchProps {
+  receiveUserPantries: ReceiveUserPantries;
+  receiveUserFavoris: ReceiveUserFavoris;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  receiveUserPantries: (pantries): Dispatch =>
+    dispatch(setUserPantries(pantries)),
+  receiveUserFavoris: (favoris): Dispatch => dispatch(setUserFavoris(favoris))
 });
 
-const RecognitionUploadContainer = connect(
+const RecognitionUploadContainer = connect<User, DispatchProps>(
   mapStateToProps,
   mapDispatchToProps
 )(Upload);

@@ -1,24 +1,27 @@
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Pantries from '../../components/Pantry/List';
 import { Store } from '../../store/types';
-import { User } from '../../interfaces';
 import { updateUserPantries } from '../../store/app/actions';
+import { PantriesTypes } from '../../interfaces';
+import { UpdateUserPantries } from '../../store/app/types';
 
-interface MapStateToProps {
-  user: User | null;
-}
-
-const mapStateToProps = (state: Store): MapStateToProps => {
+const mapStateToProps = (state: Store): PantriesTypes => {
   const { user } = state.app;
 
-  return { pantries: user ? user.pantries : [] };
+  return { pantries: user?.pantries ?? [] };
 };
 
-const mapDispatchToProps = (dispatch): any => ({
-  test: (pantries): any => dispatch(updateUserPantries(pantries))
+interface DispatchProps {
+  updatePantries: (pantries: PantriesTypes) => Dispatch;
+}
+
+const mapDispatchToProps = (dispatch): DispatchProps => ({
+  updatePantries: (pantries): UpdateUserPantries =>
+    dispatch(updateUserPantries(pantries))
 });
 
-const PantriesContainer = connect(
+const PantriesContainer = connect<PantriesTypes, DispatchProps>(
   mapStateToProps,
   mapDispatchToProps
 )(Pantries);

@@ -1,23 +1,25 @@
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Favoris from '../../components/Favoris/List';
 import { Store } from '../../store/types';
-import { User } from '../../interfaces';
-import { updateUserFavoris } from '../../store/app/actions';
+import { setUserFavoris } from '../../store/app/actions';
+import { FavorisTypes, UpdatePantries } from '../../interfaces';
 
-interface MapStateToProps {
-  user: User | null;
-}
-
-const mapStateToProps = (state: Store): MapStateToProps => {
-  const { user } = state.app;
-
-  return { favoris: user ? user.favoris : [] };
-};
-
-const mapDispatchToProps = (dispatch): any => ({
-  test: (favoris): any => dispatch(updateUserFavoris(favoris))
+const mapStateToProps = ({ app: { user } }: Store): FavorisTypes => ({
+  favoris: user?.favoris ?? []
 });
 
-const FavorisContainer = connect(mapStateToProps, mapDispatchToProps)(Favoris);
+interface DispatchProps {
+  updateFavoris: UpdatePantries;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => ({
+  updateFavoris: (favoris): Dispatch => dispatch(setUserFavoris(favoris))
+});
+
+const FavorisContainer = connect<FavorisTypes, DispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Favoris);
 
 export default FavorisContainer;

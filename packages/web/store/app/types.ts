@@ -1,9 +1,7 @@
-import { User } from '../../interfaces';
+import { User, Profil } from '../../interfaces';
 
-export interface AppState {
+export interface AppState extends Profil {
   isLoading: boolean;
-  token: null | string;
-  user: null | User;
 }
 export interface Action {
   type: string;

@@ -1,15 +1,23 @@
 import { connect } from 'react-redux';
+import { Dispatch } from 'react';
 import LoginForm from '../../pages/Login/form';
 import { ReceiveUserAction } from '../../store/app/types';
 import { receiveUser, loginSuccess } from '../../store/app/actions';
 
-const mapDispatchToProps = (dispatch: Function): Record<string, any> => ({
-  receiveUser: ({ jwt, user }: ReceiveUserAction): Funtion => {
+interface DispatchProps {
+  receiveUser: (props: ReceiveUserAction) => Dispatch;
+}
+
+const mapDispatchToProps = (dispatch: Function): DispatchProps => ({
+  receiveUser: ({ jwt, user }: ReceiveUserAction): Dispatch => {
     dispatch(receiveUser(jwt, user));
     dispatch(loginSuccess());
   }
 });
 
-const LoginFormContainer = connect(null, mapDispatchToProps)(LoginForm);
+const LoginFormContainer = connect<null, DispatchProps>(
+  null,
+  mapDispatchToProps
+)(LoginForm);
 
 export default LoginFormContainer;

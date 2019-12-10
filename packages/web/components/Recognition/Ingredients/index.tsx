@@ -4,30 +4,27 @@ import UPLOAD_USER_PANTRIES from '../../../graphql/mutations/updateUserPantries'
 import FOOD_IMAGE_RECOGNITION from '../../../graphql/queries/foodImageRecognition';
 import RECIPES from '../../../graphql/queries/recipes';
 import Recipes from '../Recipes';
+import { ReceiveUserPantries, ReceiveUserFavoris } from '../../../interfaces';
 
 interface IngredientsProps {
   url: null | string;
   pantries: any;
-  receiveUserPantries: any;
+  receiveUserPantries: ReceiveUserPantries;
   favoris: any;
-  receiveUserFavoris: any;
+  receiveUserFavoris: ReceiveUserFavoris;
 }
 
-const Ingredients = ({
+const Ingredients: React.FC<IngredientsProps> = ({
   url,
   pantries,
   receiveUserPantries,
   ...props
-}: IngredientsProps): JSX.Element => {
-  // @ts-ignore
-  const [ingredients, setIngredients] = useState([]);
-  // @ts-ignore
-  const [skipRecipesQuery, setSkipRecipesQuery] = useState(true);
-  // @ts-ignore
+}) => {
+  const [ingredients, setIngredients] = useState<Array<string>>([]);
+  const [skipRecipesQuery, setSkipRecipesQuery] = useState<boolean>(true);
   const foodImageRecognitionQuery = useQuery(FOOD_IMAGE_RECOGNITION, {
     variables: { image: url }
   });
-  // @ts-ignore
   const recipesQuery = useQuery(RECIPES, {
     variables: { ingredients: ingredients.toString() },
     skip: skipRecipesQuery
@@ -51,10 +48,9 @@ const Ingredients = ({
 
     if (isChecked) {
       const userPantries: Array<string> = pantries.filter(
-        (i: never): boolean => !ingredients.includes(i)
+        (i: string): boolean => !ingredients.includes(i)
       );
       const test: Array<string> = [...userPantries, ...ingredients, item];
-      // @ts-ignore
       return setIngredients(test);
     }
 

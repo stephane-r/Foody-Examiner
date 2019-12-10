@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-apollo';
-import { User } from '../../interfaces';
+import { Profil as ProfilTypes } from '../../interfaces';
 import ME from '../../graphql/queries/me';
 
-interface ProfilProps {
-  user: User | null;
-  token: string | null;
+interface ProfilProps extends ProfilTypes {
   receiveUser: any;
-  logout: any;
+  logout: () => any;
 }
 
-const Profil = ({
+const Profil: React.FC<ProfilProps> = ({
   user,
   token,
   receiveUser,
   logout
-}: ProfilProps): JSX.Element => {
+}) => {
   const [fetchUser, setFetchUser] = useState(false);
 
   const onCompleted = (data: any): any => receiveUser(token, data.userMe);

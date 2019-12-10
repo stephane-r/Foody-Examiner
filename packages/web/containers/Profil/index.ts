@@ -1,29 +1,24 @@
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import Profil from '../../components/Profil';
 import { Store } from '../../store/types';
 import { logout, receiveUser } from '../../store/app/actions';
-import { User } from '../../interfaces';
+import { Profil as ProfilTypes, User } from '../../interfaces';
 
-interface MapStateToProps {
-  user: User | null;
-  token: string | null;
-}
-
-const mapStateToProps = (state: Store): MapStateToProps => {
+const mapStateToProps = (state: Store): ProfilTypes => {
   const { user, token } = state.app;
 
   return { user, token };
 };
 
-interface MapDispatchToProps {
-  receiveUser: Function;
-  logout: Function;
+interface DispatchProps {
+  receiveUser: (token: string, user: User) => any;
+  logout: () => any;
 }
 
-const mapDispatchToProps = (dispatch: Function): MapDispatchToProps => ({
-  receiveUser: (token: string, user: User): Function =>
-    dispatch(receiveUser(token, user)),
-  logout: (): Function => dispatch(logout())
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  receiveUser: (token, user): any => dispatch(receiveUser(token, user)),
+  logout: (): any => dispatch(logout())
 });
 
 const ProfilContainer = connect(mapStateToProps, mapDispatchToProps)(Profil);

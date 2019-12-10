@@ -2,15 +2,17 @@ import React from 'react';
 import { useMutation } from 'react-apollo';
 import Pantry from '../Item';
 import UPDATE_USER_PANTRIES from '../../../graphql/mutations/updateUserPantries';
+import { PantriesTypes, UpdatePantries } from '../../../interfaces';
 
 interface PantriesProps {
-  pantries: Array<string>;
-  test: any;
+  pantries: PantriesTypes;
+  updatePantries: UpdatePantries;
 }
 
-const Pantries = ({ pantries, test }: PantriesProps): JSX.Element => {
+const Pantries: React.FC<PantriesProps> = ({ pantries, updatePantries }) => {
   const onError = (error: any): any => console.log(error);
-  const onCompleted = (data: any): any => test(data.updateUser.user.pantries);
+  const onCompleted = (data: any): any =>
+    updatePantries(data.updateUser.user.pantries);
 
   const [updateUserPantries] = useMutation(UPDATE_USER_PANTRIES, {
     onError,

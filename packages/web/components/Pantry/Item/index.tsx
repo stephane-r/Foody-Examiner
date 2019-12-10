@@ -1,11 +1,12 @@
 import React from 'react';
+import { RemovePantries } from '../../../interfaces';
 
 interface PantryProps {
   item: string;
-  removeFromPantries: (item: string) => any;
+  removeFromPantries: RemovePantries;
 }
 
-const Pantry = ({ item, removeFromPantries }: PantryProps): JSX.Element => (
+const Pantry: React.FC<PantryProps> = ({ item, removeFromPantries }) => (
   <div>
     {item}
     <button type="button" onClick={(): any => removeFromPantries(item)}>
