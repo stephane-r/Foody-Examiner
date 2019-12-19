@@ -65,17 +65,18 @@ const Ingredients: React.FC<IngredientsProps> = ({
   return (
     <div>
       <ul>
-        {foodImageRecognitionQuery.data.foodImageRecognition.map(
-          ({ name }: any) => (
-            <li key={name}>
-              {name}
-              <input
-                type="checkbox"
-                onChange={(event): any => handleChange(event, name)}
-              />
-            </li>
-          )
-        )}
+        {foodImageRecognitionQuery.data ?
+          foodImageRecognitionQuery.data.foodImageRecognition.map(
+            ({ name }: any) => (
+              <li key={name}>
+                {name}
+                <input
+                  type="checkbox"
+                  onChange={(event): any => handleChange(event, name)}
+                />
+              </li>
+            )
+          ) : <li>Empty data</li>}
       </ul>
       {recipesQuery.data && (
         <Recipes recipes={recipesQuery.data.recipes} {...props} />
