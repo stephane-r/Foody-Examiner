@@ -1,14 +1,25 @@
 version: '3'
 
 services:
-  foody-examiner:
+  foody_app:
     build: ./config/docker
-    container_name: foody_examiner
+    container_name: app_foody
     environment:
       - LOCAL_USER_ID=$USER_ID
       - LOCAL_GROUP_ID=$GROUP_ID
-      - NODE_ENV=production
     ports:
-      - 3000:3000
+      - 3339:3000
     volumes:
       - .:/app
+
+  foody_api:
+    build: ./config/docker
+    container_name: api_foody
+    environment:
+      - LOCAL_USER_ID=$USER_ID
+      - LOCAL_GROUP_ID=$GROUP_ID
+    ports:
+      - 3340:1337
+    volumes:
+      - .:/app
+
