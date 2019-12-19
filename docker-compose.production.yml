@@ -1,46 +1,41 @@
-version: '3'
+version: '3.4'
+
+x-common-variables: &common-variables #NODE_ENV: production
+  LOCAL_USER_ID: $USER_ID
+  LOCAL_GROUP_ID: $GROUP_ID
+  PGID: 1000
+  PUID: 1000
+  TZ: Europe/London
+  LETSENCRYPT_EMAIL: ${MAILER_DEFAUT_SENDER_ADDRESS}
 
 services:
   foody_app:
     build: ./config/docker
-    container_name: app_foody
+    container_name: foody_app
     environment:
-      #- NODE_ENV=production
-      - LOCAL_USER_ID=$USER_ID
-      - LOCAL_GROUP_ID=$GROUP_ID
-      - PGID=1000
-      - PUID=1000
-      - TZ=Europe/London
-      - VIRTUAL_HOST=foody.${SITE_URL}
-      - VIRTUAL_PORT=3339
-      - LETSENCRYPT_HOST=foody.${SITE_URL},api-foody.${SITE_URL}
-      - LETSENCRYPT_EMAIL=${MAILER_DEFAUT_SENDER_ADDRESS}
-    depends_on:
-      - foody_api
+      <<: *common-variables
+      VIRTUAL_HOST: foody.${SITE_URL}
+      VIRTUAL_PORT: 3339
+      LETSENCRYPT_HOST: api-foody.${SITE_URL}
     ports:
       - 3339:3000
+    command: yarn web:dev
     volumes:
       - .:/app
 
   foody_api:
     build: ./config/docker
-    container_name: api_foody
+    container_name: foody_api
     environment:
-      #- NODE_ENV=production
-      - LOCAL_USER_ID=$USER_ID
-      - LOCAL_GROUP_ID=$GROUP_ID
-      - PGID=1000
-      - PUID=1000
-      - TZ=Europe/London
-      - VIRTUAL_HOST=api-foody.${SITE_URL}                      
-      - VIRTUAL_PORT=3340
-      - LETSENCRYPT_HOST=api-foody.${SITE_URL},api-foody.${SITE_URL}
-      - LETSENCRYPT_EMAIL=${MAILER_DEFAUT_SENDER_ADDRESS}
+      <<: *common-variables
+      VIRTUAL_HOST: api-foody.${SITE_URL}
+      VIRTUAL_PORT: 3340
+      LETSENCRYPT_HOST: api-foody.${SITE_URL}
     ports:
       - 3340:1337
+    command: yarn api:dev
     volumes:
       - .:/app
-
 
 networks:
   default:

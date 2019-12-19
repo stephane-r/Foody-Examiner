@@ -33,4 +33,4 @@ VOLUME ["/app"]
 EXPOSE 3000
 
 # COMMAND
-CMD ["yarn", "web-ext"]
+CMD ["yarn"]

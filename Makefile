@@ -7,6 +7,7 @@ export GROUP_ID=`id -g`
 export $(shell sed 's/=.*//' .env)
 
 DOCKERCOMPO = USER_ID=${USER_ID} GROUP_ID=$(GROUP_ID) docker-compose
+DOCKERCOMPOUP = $(DOCKERCOMPO) up
 DOCKERCOMPORUN = $(DOCKERCOMPO) run --rm --service-ports foody_app
 DOCKERYARN = $(DOCKERCOMPORUN) yarn
 
@@ -36,7 +37,7 @@ docker-build:
 	docker-compose build
 docker-up:
 	@echo "--> Start docker services"
-	$(DOCKERCOMPO) -f docker-compose.production.yml run --rm --service-ports foody_app yarn web:dev
+	$(DOCKERCOMPO) -f docker-compose.production.yml up foody_api foody_app
 docker-down:
 	@echo "--> Stop docker services"
 	$(DOCKERCOMPO) down
