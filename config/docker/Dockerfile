@@ -30,7 +30,7 @@ RUN npm i -g yarn
 VOLUME ["/app"]
 
 # REACT APP PORT
-EXPOSE 3000
+EXPOSE 3000 1337
 
 # COMMAND
 CMD ["yarn"]

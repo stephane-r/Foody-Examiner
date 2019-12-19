@@ -16,7 +16,7 @@ services:
       <<: *common-variables
       VIRTUAL_HOST: foody.${SITE_URL}
       VIRTUAL_PORT: 3339
-      LETSENCRYPT_HOST: api-foody.${SITE_URL}
+      LETSENCRYPT_HOST: foody.${SITE_URL}
     ports:
       - 3339:3000
     command: yarn web:dev
