@@ -37,7 +37,7 @@ docker-build:
 	docker-compose build
 docker-up:
 	@echo "--> Start docker services"
-	$(DOCKERCOMPO) -f docker-compose.production.yml up foody_api foody_app
+	$(DOCKERCOMPO) -f docker-compose.production.yml up -d foody_app
 docker-down:
 	@echo "--> Stop docker services"
 	$(DOCKERCOMPO) down
