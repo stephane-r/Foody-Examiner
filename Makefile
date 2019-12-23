@@ -7,7 +7,8 @@ export GROUP_ID=`id -g`
 export $(shell sed 's/=.*//' .env)
 
 DOCKERCOMPO = USER_ID=${USER_ID} GROUP_ID=$(GROUP_ID) docker-compose
-DOCKERCOMPORUN = $(DOCKERCOMPO) run --rm --service-ports foody-examiner
+DOCKERCOMPOUP = $(DOCKERCOMPO) up
+DOCKERCOMPORUN = $(DOCKERCOMPO) run --rm --service-ports foody_app
 DOCKERYARN = $(DOCKERCOMPORUN) yarn
 
 ########
@@ -25,7 +26,7 @@ help: ## Display this help
 setup-dot-env:
 	@echo "--> Setup dotenv file"
 	cp .env.dist .env
-  cd packages/api && ln -s ../.env .env
+	cd packages/api && ln -s ../.env .env
 	cd packages/web && ln -s ../.env .env
 
 ##########
@@ -36,7 +37,7 @@ docker-build:
 	docker-compose build
 docker-up:
 	@echo "--> Start docker services"
-	$(DOCKERYARN) start
+	$(DOCKERCOMPO) -f docker-compose.production.yml up -d foody_app
 docker-down:
 	@echo "--> Stop docker services"
 	$(DOCKERCOMPO) down

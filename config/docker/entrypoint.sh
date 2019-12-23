@@ -14,7 +14,7 @@ else
   groupadd -g $FORCED_GROUP_ID foody
 fi
 
-useradd --shell /bin/bash --no-create-home --home $HOME -u $FORCED_USER_ID -g $FORCED_GROUP_ID -o -c "" foody
+useradd --shell /bin/bash --no-create-home --home $HOME -u $FORCED_USER_ID -g $FORCED_GROUP_ID -o -c "" foody || true
 
 chown -R $FORCED_USER_ID:$FORCED_GROUP_ID $HOME
 
