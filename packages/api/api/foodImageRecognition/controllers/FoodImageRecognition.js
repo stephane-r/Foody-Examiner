@@ -11,7 +11,7 @@ module.exports = {
     try {
       const { outputs } = await app.models.predict(
         Clarifai.FOOD_MODEL,
-        process.env.API_URL + ctx.params._image
+        ctx.params._image
       );
 
       ctx.send(outputs[0].data.concepts);

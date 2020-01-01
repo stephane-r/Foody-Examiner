@@ -32,7 +32,7 @@ const Upload: React.FC<UploadProps> = props => {
   const onError = (error: any): any => console.log(error);
   const onCompleted = (data: any): any => {
     setIsUploading(false);
-    setImageUrl(data.upload.url);
+    setImageUrl(process.env.API_URL + data.upload.url);
     setSearchFoodImageRecognition(true);
   };
 
