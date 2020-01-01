@@ -1,25 +1,28 @@
 import React from 'react';
 import { useMutation } from 'react-apollo';
+import { useSelector } from 'react-redux';
 import UPDATE_USER_FAVORIS from '../../../graphql/mutations/updateUserFavoris';
 
 interface Recipe {
   title: string;
 }
 
-interface Recipes {
+interface RecipesProps {
   recipes: any;
   favoris: any;
   receiveUserFavoris: any;
 }
 
-const Recipes = ({
+const Recipes: React.FC<RecipesProps> = ({
   recipes,
   favoris,
   receiveUserFavoris
-}: Recipes): JSX.Element => {
+}) => {
   const onError = (error: any): any => console.log(error);
   const onCompleted = (data: any): any =>
     receiveUserFavoris(data.updateUser.user.favoris);
+  // @ts-ignore
+  const userId = useSelector(state => state.app.user.id);
 
   const [updateUserFavoris] = useMutation(UPDATE_USER_FAVORIS, {
     onError,
@@ -28,11 +31,11 @@ const Recipes = ({
 
   const onClick = (title: string): any => {
     const userFavoris: Array<string> = favoris.filter(
-      (i: never): boolean => i !== title
+      (i: any): boolean => i !== title
     );
 
     updateUserFavoris({
-      variables: { userId: 1, favoris: [...userFavoris, title] }
+      variables: { userId, favoris: [...userFavoris, title] }
     });
   };
 

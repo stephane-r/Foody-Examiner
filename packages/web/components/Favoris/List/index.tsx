@@ -5,11 +5,16 @@ import UPDATE_USER_FAVORIS from '../../../graphql/mutations/updateUserFavoris';
 import { FavorisTypes, UpdateFavoris } from '../../../interfaces';
 
 interface FavorisProps {
+  userId: null | number;
   favoris: FavorisTypes;
   updateFavoris: UpdateFavoris;
 }
 
-const Favoris: React.FC<FavorisProps> = ({ favoris, updateFavoris }) => {
+const Favoris: React.FC<FavorisProps> = ({
+  userId,
+  favoris,
+  updateFavoris
+}) => {
   const onError = (error: any): any => console.log(error);
   const onCompleted = (data: any): any =>
     updateFavoris(data.updateUser.user.favoris);
@@ -21,7 +26,7 @@ const Favoris: React.FC<FavorisProps> = ({ favoris, updateFavoris }) => {
 
   const removeFromFavoris = (item: string): any => {
     const favorisUpdated = favoris.filter(i => i !== item);
-    updateUserFavoris({ variables: { userId: 1, favoris: favorisUpdated } });
+    updateUserFavoris({ variables: { userId, favoris: favorisUpdated } });
   };
 
   return (

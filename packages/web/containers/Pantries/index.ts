@@ -9,7 +9,10 @@ import { UpdateUserPantries } from '../../store/app/types';
 const mapStateToProps = (state: Store): PantriesTypes => {
   const { user } = state.app;
 
-  return { pantries: user?.pantries ?? [] };
+  return {
+    userId: user?.id ?? null,
+    pantries: user?.pantries ?? []
+  };
 };
 
 interface DispatchProps {

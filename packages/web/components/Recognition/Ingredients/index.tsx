@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-apollo';
+import { useSelector } from 'react-redux';
 import UPLOAD_USER_PANTRIES from '../../../graphql/mutations/updateUserPantries';
 import FOOD_IMAGE_RECOGNITION from '../../../graphql/queries/foodImageRecognition';
 import RECIPES from '../../../graphql/queries/recipes';
@@ -29,6 +30,8 @@ const Ingredients: React.FC<IngredientsProps> = ({
     variables: { ingredients: ingredients.toString() },
     skip: skipRecipesQuery
   });
+  // @ts-ignore
+  const userId = useSelector(state => state.app.user.id);
 
   const onError = (error: any): any => console.log(error);
   const onCompleted = (data: any): any =>
@@ -38,7 +41,7 @@ const Ingredients: React.FC<IngredientsProps> = ({
     onError,
     onCompleted,
     variables: {
-      userId: 1,
+      userId,
       pantries: ingredients
     }
   });
@@ -65,7 +68,7 @@ const Ingredients: React.FC<IngredientsProps> = ({
   return (
     <div>
       <ul>
-        {foodImageRecognitionQuery.data ?
+        {foodImageRecognitionQuery.data ? (
           foodImageRecognitionQuery.data.foodImageRecognition.map(
             ({ name }: any) => (
               <li key={name}>
@@ -76,7 +79,10 @@ const Ingredients: React.FC<IngredientsProps> = ({
                 />
               </li>
             )
-          ) : <li>Empty data</li>}
+          )
+        ) : (
+          <li>Empty data</li>
+        )}
       </ul>
       {recipesQuery.data && (
         <Recipes recipes={recipesQuery.data.recipes} {...props} />

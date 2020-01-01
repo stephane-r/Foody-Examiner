@@ -6,6 +6,7 @@ import { setUserFavoris } from '../../store/app/actions';
 import { FavorisTypes, UpdatePantries } from '../../interfaces';
 
 const mapStateToProps = ({ app: { user } }: Store): FavorisTypes => ({
+  userId: user?.id ?? null,
   favoris: user?.favoris ?? []
 });
 
