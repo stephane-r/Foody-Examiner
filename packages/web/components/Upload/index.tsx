@@ -22,31 +22,49 @@ interface UploadProps {
 
 const Upload: React.FC<UploadProps> = props => {
   const [useField, setUseField] = useState(false);
+  const [filee, setFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState(
     'https://assets.lightspeedhq.com/img/2019/07/8aac85b2-blog_foodpresentationtipsfromtopchefs.jpg'
   );
   const [search, setSearchFoodImageRecognition] = useState(false);
 
   const onError = (error: any): any => console.log(error);
-  const onCompleted = (data: any): any => console.log(data);
+  const onCompleted = (data: any): any => {
+    setIsUploading(false);
+    setImageUrl(data.upload.url);
+    setSearchFoodImageRecognition(true);
+  };
 
   const [upload] = useMutation(UPLOAD, {
     onError,
     onCompleted
   });
 
-  const handleChange = ({
-    target: {
-      files: [file]
-    }
-  }: any): any => upload({ variables: { file, ref: 'Toto' } });
+  const uploadFile = (): any =>
+    upload({ variables: { file: filee, ref: 'Toto' } });
+
+  const submitSuccess = (): void => {
+    setIsUploading(false);
+    return setSearchFoodImageRecognition(true);
+  };
 
   const handleSubmit = (event: any): void => {
     event.preventDefault();
 
-    setSearchFoodImageRecognition(true);
+    if (useField) {
+      setIsUploading(true);
+      return uploadFile();
+    }
+
+    return submitSuccess();
   };
 
+  const handleChangeFile = ({
+    target: {
+      files: [file]
+    }
+  }: any): void => setFile(file);
   const handleChangeUrl = (event: any): void => setImageUrl(event.target.value);
   const handleChangeCheckbox = (): void => setUseField(!useField);
 
@@ -65,8 +83,11 @@ const Upload: React.FC<UploadProps> = props => {
       </div>
       <input
         type={useField ? 'file' : 'text'}
-        onChange={useField ? handleChange : handleChangeUrl}
+        value={useField ? '' : imageUrl}
+        onChange={useField ? handleChangeFile : handleChangeUrl}
       />
+      <button type="submit">Submit</button>
+      {isUploading && <div>Uplading file...</div>}
       {search && <Ingredients url={imageUrl} {...props} />}
     </form>
   );
