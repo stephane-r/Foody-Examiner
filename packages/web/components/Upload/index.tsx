@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
-import UPLOAD from '../../../graphql/mutations/upload';
-import Ingredients from '../../Recognition/Ingredients';
+import UPLOAD from '../../graphql/mutations/upload';
+import Ingredients from '../Recognition/Ingredients';
 import {
   FavorisTypes,
   PantriesTypes,
   ReceiveUserPantries,
   ReceiveUserFavoris
-} from '../../../interfaces';
+} from '../../interfaces';
 
 // https://www.derbycityweekend.com/wp-content/uploads/2018/02/Charim-Korean-food.jpg
 // https://assets.lightspeedhq.com/img/2019/07/8aac85b2-blog_foodpresentationtipsfromtopchefs.jpg

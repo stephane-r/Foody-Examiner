@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Layout from '../../components/Layout';
-import RegiterForm from './form';
+import RegiterForm from '../../components/Forms/Register';
 
 const RegisterScreen: React.FC = () => (
   <>

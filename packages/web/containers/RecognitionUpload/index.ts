@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import Upload from '../../components/Forms/Upload';
+import Upload from '../../components/Upload';
 import { Store } from '../../store/types';
 import {
   User,

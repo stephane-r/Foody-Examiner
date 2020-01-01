@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.ts",
     "build": "next build",
-    "start": "node server.ts"
+    "start": "yarn build && node server.ts"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",

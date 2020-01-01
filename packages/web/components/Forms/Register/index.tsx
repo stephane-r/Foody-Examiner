@@ -1,16 +1,16 @@
 import React from 'react';
 import useForm from 'react-hook-form';
 import { useMutation } from 'react-apollo';
-import REGISTER from '../../graphql/mutations/register';
-import registerSchema, { RegisterSchemaTypes } from './form.schema';
+import REGISTER from '../../../graphql/mutations/register';
+import registerSchema, { RegisterSchemaTypes } from './index.schema';
 
 const RegisterForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm({
     validationSchema: registerSchema
   });
 
-  const onError = (error): Function => console.log(error);
-  const onCompleted = (data): Function => console.log(data);
+  const onError = (error: any): any => console.log(error);
+  const onCompleted = (data: any): any => console.log(data);
 
   const [registerr] = useMutation(REGISTER, {
     onError,
@@ -18,9 +18,11 @@ const RegisterForm: React.FC = () => {
   });
 
   const onSubmit = (variables: RegisterSchemaTypes): Function =>
+    // @ts-ignore
     registerr({ variables });
 
   return (
+    // @ts-ignore
     <form onSubmit={handleSubmit(onSubmit)}>
       <input type="text" name="username" ref={register} />
       {errors.username && <div>This field is required</div>}

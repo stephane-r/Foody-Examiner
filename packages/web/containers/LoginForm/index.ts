@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'react';
-import LoginForm from '../../pages/Login/form';
+import LoginForm from '../../components/Forms/Login';
 import { ReceiveUserAction } from '../../store/app/types';
 import { receiveUser, loginSuccess } from '../../store/app/actions';
 

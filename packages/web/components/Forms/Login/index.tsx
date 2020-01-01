@@ -1,27 +1,33 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
 import { useMutation } from 'react-apollo';
 import useForm from 'react-hook-form';
-import LOGIN from '../../graphql/mutations/login';
-import loginSchema, { LoginSchemaTypes } from './form.schema';
+import LOGIN from '../../../graphql/mutations/login';
+import loginSchema, { LoginSchemaTypes } from './index.schema';
 
-const LoginForm: React.FC = props => {
+interface LoginFormProps {
+  receiveUser: (user: any) => any;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ receiveUser }) => {
   const { register, handleSubmit, errors } = useForm({
     validationSchema: loginSchema
   });
 
-  const onError = (error): Function => console.log(error);
-  const onCompleted = (data): Function => props.receiveUser(data.login);
+  const onError = (error: any): any => console.log(error);
+  const onCompleted = (data: any): any => receiveUser(data.login);
 
   const [login] = useMutation(LOGIN, {
     onError,
     onCompleted
   });
 
-  const onSubmit = (variables: LoginSchemaTypes): Function =>
-    login({ variables });
+  // @ts-ignore
+  const onSubmit = (variables: LoginSchemaTypes): any => login({ variables });
 
   return (
+    // @ts-ignore
     <form onSubmit={handleSubmit(onSubmit)}>
       <input type="email" name="identifier" ref={register} />
       {errors.identifier && <div>This field is required</div>}
