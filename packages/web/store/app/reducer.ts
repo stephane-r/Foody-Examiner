@@ -47,6 +47,7 @@ const appReducer = (
       return {
         ...state,
         user: {
+          ...state.user,
           favoris: action.favoris
         }
       };
@@ -62,6 +63,7 @@ const appReducer = (
       return {
         ...state,
         user: {
+          ...state.user,
           pantries: action.pantries
         }
       };
