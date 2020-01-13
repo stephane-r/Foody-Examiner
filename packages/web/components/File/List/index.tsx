@@ -10,10 +10,10 @@ interface File {
 
 const FileList: React.FC = () => {
   // @ts-ignore
-  const userId = useSelector(state => state.app.user?.id);
+  const user = useSelector(state => state.app.user);
 
   const { data, loading, error } = useQuery(FILES, {
-    variables: { userId }
+    variables: { userId: user?.id }
   });
 
   if (loading) {
