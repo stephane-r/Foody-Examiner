@@ -14,6 +14,9 @@ const Navigation: React.FC = () => (
     <Link route="Favoris">
       <a>Favoris</a>
     </Link>
+    <Link route="MyUploads">
+      <a>My uploads</a>
+    </Link>
     <Link route="Login">
       <a>Login</a>
     </Link>
