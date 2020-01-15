@@ -13,15 +13,19 @@ module.exports = {
     '/mes-favoris': { page: '/Favoris/index' }
   }),
   webpack: config => {
-    config.plugins = config.plugins || [];
-
     config.plugins = [
-      ...config.plugins,
+      ...(config.plugins || []),
       new Dotenv({
         path: path.join(__dirname, '../../.env'),
         systemvars: true
       })
     ];
+
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      'react-native$': 'react-native-web',
+    };
+    config.resolve.extensions.push('.web.js', '.web.ts', '.web.tsx');
 
     return config;
   }
